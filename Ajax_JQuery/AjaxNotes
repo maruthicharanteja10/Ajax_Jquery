@@ -1,0 +1,111 @@
+What is Ajax?
+*************
+->AJAX stands for Asynchronous JavaScript and XML.
+->Ajax is not a programming language.
+->AJAX is a new technique for creating better, faster, and more interactive web applications with the help of XML, HTML, CSS, and JavaScript.
+->Ajax is used to send Asynchronous requests to the server.
+----------------------------------------------------------------
+Synchronous vs Asynchronous calls
+
+Synchronous call
+->Synchronous Request in Ajax means JavaScript will stop processing your program until a result has been obtained from the server.
+->The complete web page will be reloaded when a synchronous request is made.
+
+Asynchronous call
+->In asynchronous request doesn’t block the client, meaning the browser remains responsive.
+->When a user sends an asynchronous request to the server, there is no need to wait for the response. The user can perform other operations while the request is being processed.
+The JavaScript engine of the browser is not blocked, allowing for a smoother user experience.
+->For asynchronous requests, the complete page will not be reloaded, unlike synchronous requests.
+-------------------------------
+how responses are handled in asynchronous AJAX requests?
+->Responses from the server in AJAX are handled using callbacks.
+->A callback is a special function used in AJAX that allows the server to send data to the client when it is ready.
+-----------------------------------------------------------------------------
+What is Jquery?
+->jQuery is a lightweight JavaScript library designed with the philosophy of "write less, do more."
+->jQuery simplifies JavaScript programming, making it easier to manipulate elements, handle events, and perform animations.
+->The main purpose of jQuery is to make JavaScript easier to use on websites.
+->jQuery reduces the need for writing long JavaScript code by wrapping common tasks into simple methods that can be executed with a single line of code.
+
+Why Jquery?
+->It simplifies DOM manipulation and event handling.
+->It provides easy AJAX integration.
+->It has cross-browser compatibility.
+->It is lightweight and fast compared to raw JavaScript.
+There are many JavaScript frameworks, but jQuery is one of the most popular and extendable options.
+Many big companies use jQuery, including:
+->Google
+->Microsoft
+->IBM
+->Netflix
+
+Note: JQuery will run completely same on all browsers
+----------------------------------------------
+What are Events?
+- All the different visitors' actions that a web page can respond to are called events.  
+- An event represents the precise moment when something happens.  
+  Examples: 
+  - Moving a mouse over an element  
+  - Selecting a radio button  
+  - Clicking on an element  
+
+- The term "fires/fired" is often used with events. Example: "The keypress event is fired the moment you press a key."
+
+### Common DOM Events  
+
+| **Mouse Events**  |Keyboard Events | Form Events |Document/Window Events |  
+|------------------|------------------|-------------|----------------------|  
+| click           | keypress         | submit      | load                 |  
+| dblclick        | keydown          | change      | resize               |  
+| mouseenter      | keyup            | focus       | scroll               |  
+| mouseleave      |                  | blur        | unload               |  
+---------------------------------------------------------------------------------
+### Ajax with jQuery  
+- AJAX = Asynchronous JavaScript and XML.  
+- In short; AJAX is about loading data in the background and displaying it on the webpage, without reloading the whole page.  
+- jQuery provides several methods for AJAX functionality.  
+- With the jQuery AJAX methods, you can request text, HTML, XML, or JSON** from a remote server using both HTTP GET and HTTP POST – And you can load the external data directly into the selected HTML elements of your web page!
+------------------------------------------------------
+### jQuery load() Method  
+
+- The jQuery **load()** method is a simple, but powerful AJAX method.  
+- The **load()** method loads data from a server and puts the returned data into the selected element.  
+
+#### Example  
+```javascript
+$("button").click(function(){  
+    $("#div1").load("demo_test.txt", function(responseTxt, statusTxt, xhr){  
+        if(statusTxt == "success")  
+            alert("External content loaded successfully!");  
+        if(statusTxt == "error")  
+            alert("Error: " + xhr.status + ": " + xhr.statusText);  
+    });  
+});
+```
+we can use in table filtering
+-------------------------------------------
+### AJAX get() and post() Methods  
+- The jQuery get() and post() methods are used to request data from the server with an **HTTP GET** or **POST** request.  
+- GET - Requests data from a specified resource.  
+- POST - Submits data to be processed to a specified resource.  
+---------------------------
+### AJAX Request with jQuery - Code  
+
+```javascript
+<script type="text/javascript">
+    $(document).ready(function(event) {   ①  
+        $.ajax({   ②  
+            type : "GET",  
+            url : remote_url,   ③  
+            success : function(result) {  
+                //process the result   ④  
+            },  
+            error : function() {  
+                //handle error   ⑤  
+            }  
+        })  
+    })  
+</script>
+```
+-------------------------------------------
+Spring MVC app with AJAX

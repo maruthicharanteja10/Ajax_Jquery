@@ -1,0 +1,63 @@
+<!DOCTYPE html >
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+<script>
+//Ajax call when we selct data from dropdown
+	$(document).ready(function() {
+		$("#cname").on("change",function(e) {
+			$.ajax({
+				type : "GET",
+				url : "/cmsg",
+				data : {
+					cname : $("#cname").val()
+				},
+				success : function(result) {
+					$("#dropDownDiv").html(result);
+				},
+				error : function(result) {
+					alert('error');
+				}
+			});
+		});
+		//Ajax call when we click on submit
+		$("#submitBtn").click(function(e) {
+			$.ajax({
+				type : "GET",
+				url : "/msg",
+				data : {
+					name : $("#username").val()
+				},
+				success : function(result) {
+					$("#msgDiv").html(result);
+				},
+				error : function(result) {
+					alert('error');
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<form th:action="@{/msg}">
+		Enter Name: <input type="text" name="name" id="username"> <input
+			type="button" value="Submit" id="submitBtn">
+		<hr />
+
+	</form>
+	<div id="msgDiv"></div>
+	<hr />
+	<select id="cname">
+		<option>-Select-</option>
+		<option>India</option>
+		<option>USA</option>
+		<option>SouthAfrica</option>
+		<option>SriLanka</option>
+
+	</select>
+	<div id="dropDownDiv"></div>
+</body>
+</html>
