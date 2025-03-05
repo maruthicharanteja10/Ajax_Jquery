@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependent Dropdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Select Location</h2>
+
+    <label for="country">Country:</label>
+    <select id="country">
+        <option value="">Select Country</option>
+        <option value="USA">USA</option>
+        <option value="India">India</option>
+    </select>
+
+    <label for="state">State:</label>
+    <select id="state">
+        <option value="">Select State</option>
+    </select>
+
+    <label for="city">City:</label>
+    <select id="city">
+        <option value="">Select City</option>
+    </select>
+
+    <script>
+        $(document).ready(function() {
+            $("#country").change(function() {
+                let country = $(this).val();
+                if (country) {
+                    $.get("/location/loadStates", { country: country }, function(data) {
+                        $("#state").html('<option value="">Select State</option>' + data);
+                        $("#city").html('<option value="">Select City</option>');
+                    });
+                } else {
+                    $("#state").html('<option value="">Select State</option>');
+                    $("#city").html('<option value="">Select City</option>');
+                }
+            });
+
+            $("#state").change(function() {
+                let state = $(this).val();
+                if (state) {
+                    $.get("/location/loadCities", { state: state }, function(data) {
+                        $("#city").html('<option value="">Select City</option>' + data);
+                    });
+                } else {
+                    $("#city").html('<option value="">Select City</option>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
